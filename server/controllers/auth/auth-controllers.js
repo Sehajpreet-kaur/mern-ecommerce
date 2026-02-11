@@ -103,7 +103,7 @@ const logoutUser= (req,res)=>{
 // }
 
 const authMiddleware= async(req,res,next)=>{
-    const authHeader=req.headers['authorization']
+    const authHeader=req.headers['authorization']  //get cookies from header instead of cookies
     const token=authHeader && authHeader.split(' ')[1]
 
     if(!token)    //if token is not present -->return 401

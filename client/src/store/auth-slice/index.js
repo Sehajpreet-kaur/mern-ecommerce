@@ -59,7 +59,6 @@ export const checkAuth= createAsyncThunk('/auth/checkauth',
             headers:{
                 Authorization: `Bearer ${token}`,
                 'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
-                Expires: '0'
             }
         })  //formData which we will receive
         return response.data
