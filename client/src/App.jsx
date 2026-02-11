@@ -22,6 +22,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import PaypalReturnPage from "./pages/shopping-view/paypal-return"
 import PaymentSuccessPage from "./pages/shopping-view/payment-success"
 import SearchProducts from "./pages/shopping-view/search"
+import { stringify } from "postcss"
 
 function App() {
 
@@ -29,7 +30,8 @@ function App() {
   const dispatch=useDispatch();
 
   useEffect(()=>{
-    dispatch(checkAuth())
+    const token=JSON.parse(sessionStorage.getItem('token')) //to store token in sessionstorage and not from cookie
+    dispatch(checkAuth(token))
   },[dispatch])
 
   if(isLoading) return <Skeleton className="h-[600px] w-[600px] " />

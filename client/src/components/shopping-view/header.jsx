@@ -7,7 +7,7 @@ import { shoppingViewHeaderMenuItems } from "@/configure"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, } from "@/components/ui/avatar"
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu"
-import { logoutUser } from "@/store/auth-slice"
+import { logoutUser, resetTokenAndCredentials } from "@/store/auth-slice"
 import UserCartWrapper from "./cart-wrapper"
 import { useEffect, useState } from "react"
 import { fetchCartItems } from "@/store/shop/cart-slice"
@@ -52,7 +52,10 @@ function HeaderRightContent(){
     const dispatch=useDispatch()
 
     function handleLogout(){
-        dispatch(logoutUser())
+        // dispatch(logoutUser())
+        dispatch(resetTokenAndCredentials())
+        sessionStorage.clear()
+        navigate('/auth/login')
     }
 
     useEffect(()=>{
