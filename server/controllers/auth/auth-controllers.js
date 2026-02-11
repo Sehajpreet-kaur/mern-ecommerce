@@ -52,7 +52,7 @@ const loginUser=async(req,res)=>{
             id:checkUser._id, role:checkUser.role, email:checkUser.email, username: checkUser.username
         },'CLIENT_SECRET_KEY',{expiresIn:'60mins'}) //max should be --15 or 30 min
 
-        res.cookie('token',token,{httpOnly:true,secure:false}).json({
+        res.cookie('token',token,{httpOnly:true,secure:true}).json({
             success:true,message:"Logged In successfully",
             user:{
                 email:checkUser.email,
