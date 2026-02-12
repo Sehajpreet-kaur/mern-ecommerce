@@ -30,7 +30,7 @@ function App() {
   const dispatch=useDispatch();
 
   useEffect(()=>{
-    const token = sessionStorage.getItem('token') //to store token in sessionstorage and not from cookie
+    const token = localStorage.getItem('token') //to store token in sessionstorage and not from cookie
       if(token){
         dispatch(checkAuth(token))
       } else {
