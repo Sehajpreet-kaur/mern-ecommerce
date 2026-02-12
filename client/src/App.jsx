@@ -31,7 +31,11 @@ function App() {
 
   useEffect(()=>{
     const token=JSON.parse(sessionStorage.getItem('token')) //to store token in sessionstorage and not from cookie
-    dispatch(checkAuth(token))
+      if(token){
+        dispatch(checkAuth(token))
+      } else {
+        dispatch(resetTokenAndCredentials())
+      }
   },[dispatch])
 
   if(isLoading) return <Skeleton className="h-[600px] w-[600px] " />
