@@ -22,7 +22,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import PaypalReturnPage from "./pages/shopping-view/paypal-return"
 import PaymentSuccessPage from "./pages/shopping-view/payment-success"
 import SearchProducts from "./pages/shopping-view/search"
-import { stringify } from "postcss"
+import { resetTokenAndCredentials } from "./store/auth-slice"
 
 function App() {
 
@@ -47,12 +47,12 @@ function App() {
 
       <Routes>
         <Route path="/" element={
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth isLoading={isLoading} isAuthenticated={isAuthenticated} user={user}>
           </CheckAuth>
         }
         />
         <Route path="/auth" element={
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth isLoading={isLoading} isAuthenticated={isAuthenticated} user={user}>
             <AuthLayout />
           </CheckAuth>
           } >
@@ -60,7 +60,7 @@ function App() {
           <Route path="register" element={<AuthRegister/>}/>
         </Route>
         <Route path="/admin" element={
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth isLoading={isLoading} isAuthenticated={isAuthenticated} user={user}>
             <AdminLayout/>
           </CheckAuth>
         }>
@@ -70,7 +70,7 @@ function App() {
           <Route path="features" element={<AdminFeatures/>}/>
         </Route>
         <Route path="/shop" element={
-          <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+          <CheckAuth isLoading={isLoading} isAuthenticated={isAuthenticated} user={user}>
             <ShoppingLayout/>
           </CheckAuth>
         }> 
