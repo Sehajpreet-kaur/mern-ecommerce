@@ -52,17 +52,8 @@ const loginUser=async(req,res)=>{
             id:checkUser._id, role:checkUser.role, email:checkUser.email, username: checkUser.username
         },'CLIENT_SECRET_KEY',{expiresIn:'60mins'}) //max should be --15 or 30 min
 
-        // res.cookie('token',token,{httpOnly:true,secure:true}).json({
-        //     success:true,message:"Logged In successfully",
-        //     user:{
-        //         email:checkUser.email,
-        //         role:checkUser.role,
-        //         id:checkUser._id,
-        //         username: checkUser.username
-        //     }
-        // })
-        res.status(200).json({
-            success:true, message:"Logged in successfully!", token,
+        res.cookie('token',token,{httpOnly:true,secure:true}).json({
+            success:true,message:"Logged In successfully",
             user:{
                 email:checkUser.email,
                 role:checkUser.role,
@@ -70,6 +61,15 @@ const loginUser=async(req,res)=>{
                 username: checkUser.username
             }
         })
+        // res.status(200).json({
+        //     success:true, message:"Logged in successfully!", token,
+        //     user:{
+        //         email:checkUser.email,
+        //         role:checkUser.role,
+        //         id:checkUser._id,
+        //         username: checkUser.username
+        //     }
+        // })
     }
     catch(e){
         console.log(e);
@@ -81,35 +81,19 @@ const loginUser=async(req,res)=>{
 
 const logoutUser= (req,res)=>{
 
-    // res.clearCookie('token').json({
-    //     success:true, message:"Logged out successfully"
-    // })
-    res.json({
-        success: true,
-        message: "Logged out successfully"
-    });
+    res.clearCookie('token').json({
+        success:true, message:"Logged out successfully"
+    })
+    // res.json({
+    //     success: true,
+    //     message: "Logged out successfully"
+    // });
 }
 
 //auth middleware
 
-// const authMiddleware= async(req,res,next)=>{
-//     const token = req.cookies.token
-
-//     if(!token)    //if token is not present -->return 401
-//         return res.status(401).json({success:false, message:"Unauthorized user!"})
-      
-//     try{
-//         const decoded=jwt.verify(token,'CLIENT_SECRET_KEY')
-//         req.user=decoded  //this will return user info -- req.user
-//         next()
-//     }catch(error){
-//         return res.status(401).json({success:false, message:"Unauthorized user!"})
-//     }
-// }
-
 const authMiddleware= async(req,res,next)=>{
-    const authHeader=req.headers['authorization']  //get cookies from header instead of cookies
-    const token=authHeader && authHeader.split(' ')[1]
+    const token = req.cookies.token
 
     if(!token)    //if token is not present -->return 401
         return res.status(401).json({success:false, message:"Unauthorized user!"})
@@ -122,6 +106,22 @@ const authMiddleware= async(req,res,next)=>{
         return res.status(401).json({success:false, message:"Unauthorized user!"})
     }
 }
+
+// const authMiddleware= async(req,res,next)=>{
+//     const authHeader=req.headers['authorization']  //get cookies from header instead of cookies
+//     const token=authHeader && authHeader.split(' ')[1]
+
+//     if(!token)    //if token is not present -->return 401
+//         return res.status(401).json({success:false, message:"Unauthorized user!"})
+      
+//     try{
+//         const decoded=jwt.verify(token,'CLIENT_SECRET_KEY')
+//         req.user=decoded  //this will return user info -- req.user
+//         next()
+//     }catch(error){
+//         return res.status(401).json({success:false, message:"Unauthorized user!"})
+//     }
+// }
 
 
 module.exports={registerUser,loginUser,logoutUser,authMiddleware};

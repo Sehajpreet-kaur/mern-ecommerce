@@ -52,10 +52,10 @@ function HeaderRightContent(){
     const dispatch=useDispatch()
 
     function handleLogout(){
-        // dispatch(logoutUser())
-        dispatch(resetTokenAndCredentials())
-        localStorage.clear()
-        navigate('/auth/login')
+        dispatch(logoutUser())
+        // dispatch(resetTokenAndCredentials())
+        // localStorage.clear()
+        // navigate('/auth/login')
     }
 
     useEffect(()=>{

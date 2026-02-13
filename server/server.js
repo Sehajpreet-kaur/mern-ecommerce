@@ -3,7 +3,7 @@ require('dotenv').config()  //it will automatically read all env variables creat
 
 const express=require('express')
 const mongoose=require('mongoose')
-// const cookieParser=require('cookie-parser')
+const cookieParser=require('cookie-parser')
 const cors=require('cors')
 
 const authRouter=require("./routes/auth/auth-routes.js")
@@ -41,11 +41,11 @@ app.use(
             "Expires",
             "Pragma"
         ],
-        credentials:false
+        credentials:true
     })
 )
 
-// app.use(cookieParser())
+app.use(cookieParser())
 app.use(express.json())
 app.use('/api/auth',authRouter)  // when we hit api/auth/register -- run registerUser
 

@@ -11,10 +11,10 @@ function AdminHeader({setOpen}){
     const navigate=useNavigate()
 
     function handleLogout(){
-        // dispatch(logoutUser())
-        dispatch(resetTokenAndCredentials())
-        localStorage.clear()
-        navigate('/auth/login')
+        dispatch(logoutUser())
+        // dispatch(resetTokenAndCredentials())
+        // localStorage.clear()
+        // navigate('/auth/login')
     }
 
     return (
