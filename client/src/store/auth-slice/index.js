@@ -24,6 +24,9 @@ export const loginUser= createAsyncThunk('/auth/login',
         const response=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`,formData,{
             withCredentials:true
         })  //formData which we will receive
+
+        console.log("FULL RESPONSE:", response.data)
+
         return response.data
     }
 )
@@ -90,13 +93,19 @@ const authSlice=createSlice({
         }).addCase(loginUser.pending,(state)=>{
             state.isLoading=true
         }).addCase(loginUser.fulfilled,(state,action)=>{
+            console.log(action.payload,"action")
             console.log(action.payload.token,"token")
             state.isLoading=false,
             state.user=action.payload.success ? action.payload.user : null,
             state.isAuthenticated=action.payload.success ? true: false
 
-            state.token=action.payload.token
-            localStorage.setItem('token', action.payload.token)
+            // state.token=action.payload.token
+            // localStorage.setItem('token', action.payload.token)
+            if(action.payload.success && action.payload.token){
+                state.token = action.payload.token;
+                localStorage.setItem('token', action.payload.token);
+            }
+
         }).addCase(loginUser.rejected,(state,action)=>{
             state.isLoading=false,
             state.user=null,

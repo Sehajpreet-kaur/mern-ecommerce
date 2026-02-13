@@ -7,7 +7,7 @@ function CheckAuth({isAuthenticated, user, children,isLoading}){
     console.log(location.pathname,isAuthenticated,isLoading,"isLoading")
 
     if(isLoading){
-        return null
+        return <h1>Loading...</h1>
     }
 
     if(location.pathname==="/"){

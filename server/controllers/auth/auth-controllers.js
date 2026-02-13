@@ -80,14 +80,10 @@ const loginUser=async(req,res)=>{
 //logout
 
 const logoutUser= (req,res)=>{
-    sessionStorage.removeItem('token')
-    res.status(200).json({
-        success:true, message:"Logged out successfully!"
-    })
 
-    // res.clearCookie('token').json({
-    //     success:true, message:"Logged out successfully"
-    // })
+    res.clearCookie('token').json({
+        success:true, message:"Logged out successfully"
+    })
 }
 
 //auth middleware

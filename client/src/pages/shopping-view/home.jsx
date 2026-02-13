@@ -117,7 +117,7 @@ function ShoppingHome(){
                         {
                             //map categories here
                             categoriesWithIcon.map((categoryItem)=>
-                            <Card onClick={()=>handleNavigateToListingPage(categoryItem,'category')} className="cursor-pointer hover:shadow-lg transition-shadow">
+                            <Card key={categoryItem?._id} onClick={()=>handleNavigateToListingPage(categoryItem,'category')} className="cursor-pointer hover:shadow-lg transition-shadow">
                                 <CardContent className="flex flex-col items-center justify-center p-6">
                                     <categoryItem.icon className="w-12 h-12 mb-4 text-primary" />
                                     <span className="font-bold">{categoryItem.label}</span>
