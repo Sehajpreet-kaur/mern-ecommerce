@@ -50,9 +50,9 @@ const loginUser=async(req,res)=>{
         //if both conditions are correct , then create token
         const token=jwt.sign({
             id:checkUser._id, role:checkUser.role, email:checkUser.email, username: checkUser.username
-        },'CLIENT_SECRET_KEY',{expiresIn:'60mins'}) //max should be --15 or 30 min
+        },process.env.CLIENT_SECRET_KEY,{expiresIn:'60mins'}) //max should be --15 or 30 min
 
-        res.cookie('token',token,{httpOnly:true,secure:true,sameSite: "None"}).json({
+        res.cookie('token',token,{httpOnly:true,secure:true,sameSite:"None"}).json({
             success:true,message:"Logged In successfully",
             user:{
                 email:checkUser.email,
