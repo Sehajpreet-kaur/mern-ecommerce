@@ -34,9 +34,7 @@ app.set("trust proxy", 1);
 app.use(
     cors({
         //client-side url-origin
-        origin: [
-            "http://localhost:5173",
-            process.env.CLIENT_BASE_URL],
+        origin:process.env.CLIENT_BASE_URL,
         methods:['GET','POST','DELETE','PUT'],
         allowedHeaders:[
             "Content-Type",
