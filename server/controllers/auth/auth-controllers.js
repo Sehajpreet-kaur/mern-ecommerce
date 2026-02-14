@@ -105,7 +105,7 @@ const authMiddleware= async(req,res,next)=>{
         return res.status(401).json({success:false, message:"Unauthorized user!"})
       
     try{
-        const decoded=jwt.verify(token,'CLIENT_SECRET_KEY')
+        const decoded=jwt.verify(token,process.env.CLIENT_SECRET_KEY)
         req.user=decoded  //this will return user info -- req.user
         next()
     }catch(error){
