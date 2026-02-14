@@ -34,7 +34,9 @@ app.set("trust proxy", 1);
 app.use(
     cors({
         //client-side url-origin
-        origin: process.env.CLIENT_BASE_URL,
+        origin: [
+            "http://localhost:5173",
+            process.env.CLIENT_BASE_URL],
         methods:['GET','POST','DELETE','PUT'],
         allowedHeaders:[
             "Content-Type",
@@ -46,6 +48,8 @@ app.use(
         credentials:true
     })
 )
+
+app.use("*",cors())
 
 app.use(cookieParser())
 app.use(express.json())
