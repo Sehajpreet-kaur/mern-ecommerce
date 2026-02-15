@@ -46,9 +46,9 @@ function App() {
     }
   }, []);
 
-  useEffect(()=>{
-    dispatch(checkAuth())
-  },[])
+  // useEffect(()=>{
+  //   dispatch(checkAuth())
+  // },[])
 
 
   if(isLoading) return <Skeleton className="h-[600px] w-[600px] " />
