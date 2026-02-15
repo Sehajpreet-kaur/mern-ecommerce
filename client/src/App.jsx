@@ -38,13 +38,13 @@ function App() {
   //     }
   // },[dispatch])
 
-  //   useEffect(() => {
-  //   const token = localStorage.getItem("token");
+    useEffect(() => {
+    const token = sessionStorage.getItem("token");
 
-  //   if (token) {
-  //     dispatch(checkAuth(token));
-  //   }
-  // }, []);
+    if (token) {
+      dispatch(checkAuth(token));
+    }
+  }, []);
 
   useEffect(()=>{
     dispatch(checkAuth())
