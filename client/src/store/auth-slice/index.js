@@ -93,16 +93,16 @@ const authSlice=createSlice({
             state.isLoading=true
         }).addCase(loginUser.fulfilled,(state,action)=>{
             console.log(action.payload,"action")
-            // console.log(action.payload.token,"token")
+            console.log(action.payload.token,"token")
             state.isLoading=false,
             state.user=action.payload.success ? action.payload.user : null,
             state.isAuthenticated=action.payload.success ? true: false
 
-            state.token=action.payload.token
-            sessionStorage.setItem('token', action.payload.token)
+            // state.token=action.payload.token
+            // localStorage.setItem('token', action.payload.token)
             if(action.payload.success && action.payload.token){
                 state.token = action.payload.token;
-                sessionStorage.setItem('token', action.payload.token);
+                localStorage.setItem('token', action.payload.token);
             }
 
         }).addCase(loginUser.rejected,(state,action)=>{
