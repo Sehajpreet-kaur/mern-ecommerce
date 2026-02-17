@@ -29,22 +29,22 @@ function App() {
   const {user,isAuthenticated,isLoading}=useSelector((state)=> state.auth)
   const dispatch=useDispatch();
 
-  // useEffect(()=>{
-  //   const token = localStorage.getItem('token') //to store token in sessionstorage and not from cookie
-  //     if(token){
-  //       dispatch(checkAuth(token))
-  //     } else {
-  //       dispatch(resetTokenAndCredentials())
-  //     }
-  // },[dispatch])
+  useEffect(()=>{
+    const token = localStorage.getItem('token') //to store token in sessionstorage and not from cookie
+      if(token){
+        dispatch(checkAuth(token))
+      } else {
+        dispatch(resetTokenAndCredentials())
+      }
+  },[dispatch])
 
-    useEffect(() => {
-    const token = localStorage.getItem("token");
+  //   useEffect(() => {
+  //   const token = localStorage.getItem("token");
 
-    if (token) {
-      dispatch(checkAuth(token));
-    }
-  }, []);
+  //   if (token) {
+  //     dispatch(checkAuth(token));
+  //   }
+  // }, []);
 
   // useEffect(()=>{
   //   dispatch(checkAuth())
