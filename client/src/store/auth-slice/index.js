@@ -5,7 +5,7 @@ const initialState={
     isAuthenticated:false,
     isLoading:true,
     user:null,
-    // token:null
+    token:null
 }
 
 export const registerUser= createAsyncThunk('/auth/register',
