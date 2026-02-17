@@ -5,6 +5,7 @@ const express=require('express')
 const mongoose=require('mongoose')
 const cookieParser=require('cookie-parser')
 const cors=require('cors')
+const path = require("path");
 
 const authRouter=require("./routes/auth/auth-routes.js")
 
@@ -62,5 +63,12 @@ app.use("/api/shop/search",shopSearchRouter)
 app.use("/api/shop/review",shopReviewRouter)
 
 app.use("/api/common/feature",commonFeatureRouter)
+
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
+
 
 app.listen(PORT, ()=>console.log(`Server is running on port ${PORT}`))
