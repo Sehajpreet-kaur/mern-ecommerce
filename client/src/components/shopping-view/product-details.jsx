@@ -49,7 +49,7 @@ function ProductDetailsDialog({open,setOpen,productDetails}) {
                     dispatch(getReviews(productDetails?._id))
                     toast.success("Review added successfully!")
                 }else{
-                    toast.error("You already added reviewed this product!")
+                    toast.error(data?.payload?.error)
                     setRating(0)
                     setReviewMsg("")
                 }

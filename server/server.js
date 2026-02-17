@@ -47,8 +47,6 @@ app.use(
     })
 )
 
-app.options("*", cors()); 
-
 app.use(cookieParser())
 app.use(express.json())
 app.use('/api/auth',authRouter)  // when we hit api/auth/register -- run registerUser
