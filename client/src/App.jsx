@@ -22,21 +22,21 @@ import { Skeleton } from "@/components/ui/skeleton"
 import PaypalReturnPage from "./pages/shopping-view/paypal-return"
 import PaymentSuccessPage from "./pages/shopping-view/payment-success"
 import SearchProducts from "./pages/shopping-view/search"
-import { resetTokenAndCredentials } from "./store/auth-slice"
+// import { resetTokenAndCredentials } from "./store/auth-slice"
 
 function App() {
 
   const {user,isAuthenticated,isLoading}=useSelector((state)=> state.auth)
   const dispatch=useDispatch();
 
-  useEffect(()=>{
-    const token = localStorage.getItem('token') //to store token in sessionstorage and not from cookie
-      if(token){
-        dispatch(checkAuth(token))
-      } else {
-        dispatch(resetTokenAndCredentials())
-      }
-  },[dispatch])
+  // useEffect(()=>{
+  //   const token = localStorage.getItem('token') //to store token in sessionstorage and not from cookie
+  //     if(token){
+  //       dispatch(checkAuth(token))
+  //     } else {
+  //       dispatch(resetTokenAndCredentials())
+  //     }
+  // },[dispatch])
 
   //   useEffect(() => {
   //   const token = localStorage.getItem("token");
@@ -46,9 +46,9 @@ function App() {
   //   }
   // }, []);
 
-  // useEffect(()=>{
-  //   dispatch(checkAuth())
-  // },[])
+  useEffect(()=>{
+    dispatch(checkAuth())
+  },[dispatch])
 
 
   if(isLoading) return <Skeleton className="h-[600px] w-[600px] " />
@@ -59,7 +59,6 @@ function App() {
     <div className="flex flex-col overflow-hidden bg-white">
 
       <Routes>
-        <Route path="/index.html" element={<Navigate to="/" />} />
         <Route path="/" element={
           <CheckAuth isLoading={isLoading} isAuthenticated={isAuthenticated} user={user}>
           </CheckAuth>

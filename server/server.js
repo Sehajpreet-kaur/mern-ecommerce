@@ -48,6 +48,11 @@ app.use(
     })
 )
 
+app.use((req, res, next) => {
+    console.log("Incoming cookies:", req.headers.cookie);
+    next();
+});
+
 app.use(cookieParser())
 app.use(express.json())
 app.use('/api/auth',authRouter)  // when we hit api/auth/register -- run registerUser
@@ -63,12 +68,5 @@ app.use("/api/shop/search",shopSearchRouter)
 app.use("/api/shop/review",shopReviewRouter)
 
 app.use("/api/common/feature",commonFeatureRouter)
-
-app.use(express.static(path.join(__dirname, "../client/dist")));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
-
 
 app.listen(PORT, ()=>console.log(`Server is running on port ${PORT}`))
