@@ -3,7 +3,7 @@ import axios from "axios";
 
 const initialState={
     isAuthenticated:false,
-    isLoading:true,
+    isLoading:false,
     user:null,
     token:localStorage.getItem('token')
 }
@@ -11,9 +11,7 @@ const initialState={
 export const registerUser= createAsyncThunk('/auth/register',
 
     async(formData) =>{    // formData is what we get from auth/register
-        const response=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`,formData,{
-            withCredentials:true
-        })  //formData which we will receive
+        const response=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`,formData)  //formData which we will receive
         return response.data
     }
 )
@@ -21,9 +19,7 @@ export const registerUser= createAsyncThunk('/auth/register',
 export const loginUser= createAsyncThunk('/auth/login',
 
     async(formData) =>{    // formData is what we get from auth/register
-        const response=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`,formData,{
-            withCredentials:true
-        })  //formData which we will receive
+        const response=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`,formData)  //formData which we will receive
 
         console.log("FULL RESPONSE:", response.data)
 
@@ -34,9 +30,7 @@ export const loginUser= createAsyncThunk('/auth/login',
 export const logoutUser= createAsyncThunk('/auth/logout',
 
     async() =>{    // formData is what we get from auth/register
-        const response=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`,{},{
-            withCredentials:true
-        })  //no need of formData 
+        const response=await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/logout`)  //no need of formData 
         return response.data
     }
 )
