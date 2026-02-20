@@ -38,17 +38,17 @@ function App() {
   //     }
   // },[dispatch])
 
-  //   useEffect(() => {
-  //   const token = localStorage.getItem("token");
+    useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  //   if (token) {
-  //     dispatch(checkAuth(token));
-  //   }
-  // }, []);
+    if (token) {
+      dispatch(checkAuth(token));
+    }
+  },[dispatch]);
 
-  useEffect(()=>{
-    dispatch(checkAuth())
-  },[dispatch])
+  // useEffect(()=>{
+  //   dispatch(checkAuth())
+  // },[dispatch])
 
 
   if(isLoading) return <Skeleton className="h-[600px] w-[600px] " />
