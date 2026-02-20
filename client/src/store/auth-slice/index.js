@@ -53,7 +53,7 @@ export const checkAuth= createAsyncThunk('/auth/checkauth',
     async() =>{ 
         const token=localStorage.getItem('token')  
         if(!token){
-            return "No Token" 
+             throw new Error('No token');
         }  
         const response=await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/check-auth`,{
             headers:{
