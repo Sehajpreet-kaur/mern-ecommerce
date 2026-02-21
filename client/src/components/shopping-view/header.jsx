@@ -13,7 +13,7 @@ import { useEffect, useState } from "react"
 import { fetchCartItems } from "@/store/shop/cart-slice"
 import { Label } from "../ui/label"
 
-function MenuItems(){
+function MenuItems({setOpen}){
 
     const navigate=useNavigate()
     const location=useLocation()
@@ -32,7 +32,8 @@ function MenuItems(){
         //to navigate to filters while on diff pages
         location.pathname.includes('listing')  && currentFilter!==null ?
         setSearchParams(new URLSearchParams(`?category=${getCurrentMenuItem.id}`)) :
-        navigate(getCurrentMenuItem.path) 
+        navigate(getCurrentMenuItem.path)
+        if (setOpen) setOpen(false);
         // path we have given in configure file
     }
 
@@ -110,6 +111,7 @@ function HeaderRightContent(){
 function ShoppingHeader(){
 
     const {isAuthenticated}=useSelector((state)=> state.auth)
+    const [openMenu,setOpenMenu]=useState(false);
 
     return(
         <header className="sticky top-0 z-40 w-full border-b bg-background">
@@ -118,7 +120,7 @@ function ShoppingHeader(){
                     <HousePlug className="h-6 w-6" />
                     <span className="font-bold">Ecommerce</span>
                 </Link>
-                <Sheet>
+                <Sheet open={openMenu} onOpenChange={setOpenMenu}>
                     <SheetTrigger asChild >
                         <Button variant="outline" size="icon" className="lg:hidden">
                             <Menu className="h-6 w-6" />
@@ -127,7 +129,7 @@ function ShoppingHeader(){
                     </SheetTrigger>
                     <SheetContent side="left" className="w-full max-w-xs bg-white text-black">
                     {/* render menu  items for small devices here */}
-                        <MenuItems />
+                        <MenuItems setOpen={setOpenMenu}/>
                         <HeaderRightContent />
                     </SheetContent>
                 </Sheet>
