@@ -86,7 +86,7 @@ function HeaderRightContent(){
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent side="right" className="w-56 bg-white">
-                <DropdownMenuLabel onClick={handleLogout}>
+                <DropdownMenuLabel>
                     Logged in as {user?.username}
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
