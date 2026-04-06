@@ -12,7 +12,7 @@ export const fetchAllFilteredProducts=createAsyncThunk('/products/fetchAllProduc
 
     //create query here
     const query=new URLSearchParams({
-        ...filterParams,
+        ...filterParams,  //spreads {category:["men","women"],brand:["nike"]}
         sortBy:sortParams
     })
 

@@ -8,7 +8,7 @@ const initialState={
 
 export const addNewProduct=createAsyncThunk('/products/addnewProduct', async (formData)=>{
     //ApI call
-    const result= await axios.post('${import.meta.env.VITE_API_URL}/api/admin/products/add',formData,
+    const result= await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/products/add`,formData,
        { headers : { 
             'Content-Type': 'application/json'
             }

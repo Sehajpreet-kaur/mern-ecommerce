@@ -52,7 +52,7 @@ function handleFilter(getSectionId,getCurrentOption){
     {
         cpyFilters ={
             ...cpyFilters,
-            [getSectionId]:[getCurrentOption]
+            [getSectionId]:[getCurrentOption]   //if none of the filter is selected , then do this ["category"]:["men"] not getsectionid:"men" if without []bracket
         }
     }
     else //get the selected index

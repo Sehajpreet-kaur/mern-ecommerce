@@ -3,12 +3,12 @@ const Product=require('../../models/Product.js')
 const getFilterProducts = async (req,res)=>{
     try{
 
-        const {category=[], brand=[], sortBy="price-lowtohihgh"}= req.query  //get category and brand from query
+        const {category=[], brand=[], sortBy="price-lowtohigh"}= req.query  //get category and brand from query
         //for filters
         let filters={}
         
         if(category.length){
-            filters.category={$in :category.split(',')}
+            filters.category={$in :category.split(',')}  //gets everything $in- where filetrs.category=catgory(from query),i.e. ["men","kids"]
         }
         if(brand.length){
             filters.brand={$in :brand.split(',')}
